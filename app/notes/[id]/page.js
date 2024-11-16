@@ -5,16 +5,19 @@ async function fetchNoteDetails(id) {
   if (!res.ok) {
     notFound();  
   }
+  console.log(res)
   return res.json();
 }
 
 export default async function NoteDetails({ params }) {
-  const note = await fetchNoteDetails(params.id);
-
+  const { id } = await params
+  const note = await fetchNoteDetails(id);
+  
   return (
-    <div>
-      <h1>{note.title}</h1>
-      <p>{note.content}</p>
+    <div>   
+      <h1 className='text-lg'>Title:-{note.title}</h1>
+      <p>Content:-{note.content}</p>
     </div>
   );
 }
+
