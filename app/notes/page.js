@@ -31,11 +31,11 @@ export default function NotesPage() {
 
   return (
     <div>
-      <h1>All Notes</h1>
-      <Link href="/notes/new">Create New Note</Link>
-      <ul>
+      <h1 className='text-center text-xl font-semibold'>All Notes</h1>
+      <Link className='text-green-500 text-lg' href="/notes/new">Create New Note</Link>
+      <ul className=' space-y-4 list-inside list-decimal  flex flex-col items-center justify-center'>
         {notes.map((note) => (
-          <li key={note._id}>
+          <li className='' key={note._id}>
             <Link href={`/notes/${note._id}`}>{note.title}</Link>
           </li>
         ))}
