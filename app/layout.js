@@ -23,7 +23,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <header className="bg-gray-800 text-white p-4">
+          <h1 className="text-lg font-bold">Markdown Notes</h1>
+        </header>
+        <main className="p-4">{children}</main>
+        <footer className="bg-gray-800 text-white text-center p-4">
+          © 2024 Markdown Notes
+        </footer>
       </body>
     </html>
   );
