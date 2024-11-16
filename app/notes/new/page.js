@@ -9,16 +9,17 @@ export default function FormComponent() {
     // Handle title change
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
+      
     };
 
     // Handle content change
     const handleContentChange = (e) => {
         setContent(e.target.value);
+      
     };
 
     // Handle file change
     const handleFileChange = (e) => {
-        console.log(e.target.files[0])
         setFile(e.target.files[0]);  // Only store the first file
     };
 
@@ -27,18 +28,23 @@ export default function FormComponent() {
         e.preventDefault();
 
         // Form data for submitting
+        console.log(title,content)
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
+         
         if (file) {
             formData.append('file', file);
         }
-
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+       
         try {
-            // Example submission (you can modify the endpoint accordingly)
+             
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/note/new`, {
                 method: 'POST',
-                body: formData,
+                body:  formData,
             });
 
             if (response.ok) {
