@@ -14,7 +14,10 @@ export default function NotesPage() {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes`, {
           cache: 'no-store',
         });
-        if (!res.ok) throw new Error('Failed to fetch notes');
+        if (!res.ok) {
+          
+          console.log(res)
+        };
         const data = await res.json();
         setNotes(data);
       } catch (err) {
