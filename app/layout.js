@@ -21,10 +21,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className="min-h-screen flex flex-col"
+        className="min-h-screen flex flex-col "
       >
-        <header className="bg-gray-800 text-white p-4">
-          <h1 className="text-lg font-bold">Markdown Notes</h1>
+        <header className="bg-gray-800 text-center md:text-left text-white p-4">
+          <h1 className="text-sm  md:text-base lg:text-lg font-bold">Markdown Notes</h1>
         </header>
         <main className="flex-1 p-4">{children}</main>
         <footer className="bg-gray-800 text-white text-center p-4">
