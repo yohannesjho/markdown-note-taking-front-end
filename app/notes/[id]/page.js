@@ -50,6 +50,9 @@ export default function NoteDetails({ params: paramsPromise }) {
 
             if (res.ok) {
                 const data = await res.json()
+                if(data.message){
+                    alert(data.message)
+                }
                 const messages = data
                 messages.forEach(message => {
                     alert(message)
@@ -154,7 +157,7 @@ export default function NoteDetails({ params: paramsPromise }) {
                     <p>{note.title}</p>
                     <p className="text-lg mt-2">{note.content}</p>
                 </div>
-                <div className='border flex flex-col md:flex-row space-y-2 md:space-x-4 md:justify-between'>
+                <div className='flex flex-col md:flex-row space-y-2 md:space-x-4 md:justify-between'>
 
                     <button onClick={handleCheckGrammar} className={`${toggle ? 'hidden' : 'inline'} bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600`}>Check Grammar</button>
                     <button onClick={() => setToggle(!toggle)} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 ">
