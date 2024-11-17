@@ -11,6 +11,7 @@ export default function NoteDetails({ params: paramsPromise }) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [toggle, setToggle] = useState(false)
+    const [message,setMessage] = useState('')
 
     // Resolve params and fetch note details
     useEffect(() => {
@@ -33,7 +34,31 @@ export default function NoteDetails({ params: paramsPromise }) {
 
         fetchData();
     }, [paramsPromise]);
-
+    //Handle check grammar 
+    const handleCheckGrammar = async (e) => {
+        console.log('clicked')
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/note/grammar-check`,
+              {  method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({"text":note.content})}
+            )
+            
+            if(res.ok){
+                const data = await res.json()
+                const messages = data
+                messages.forEach(message => {
+                    alert(message)
+                });
+                
+                
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
     // Handle update of the note
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -128,15 +153,17 @@ export default function NoteDetails({ params: paramsPromise }) {
                     <p className="text-lg mt-2">{note.content}</p>
                 </div>
 
-                <button
-                    onClick={handleDelete}
-                    className={`${toggle?'hidden':'inline'} bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600`}
-                >
-                    Delete Note
-                </button>
+                <button onClick={handleCheckGrammar}  className={`${toggle?'hidden':'inline'} bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600`}>Check Grammar</button>
                 <button onClick={() => setToggle(!toggle)} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 ml-4">
                     {toggle? "Close":"Edit"}
                 </button>
+                <button
+                    onClick={handleDelete}
+                    className={`${toggle?'hidden':'inline'} bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-4`}
+                >
+                    Delete Note
+                </button>
+                
             </div>
         </div>
     );
