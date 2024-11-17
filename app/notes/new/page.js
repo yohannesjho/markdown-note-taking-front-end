@@ -1,7 +1,9 @@
 'use client';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function FormComponent() {
+    const router = useRouter()
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [file, setFile] = useState(null);
@@ -53,6 +55,7 @@ export default function FormComponent() {
                 setTitle('');
                 setContent('');
                 setFile(null);
+                router.push('/notes')
             } else {
                 alert('Submission failed!');
             }
