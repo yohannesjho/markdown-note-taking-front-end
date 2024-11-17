@@ -22,7 +22,7 @@ export default function NotesPage() {
         setNotes(data);
       } catch (err) {
         console.log(err)
-        setError(err.message);
+        setError(err);
       }
     }
     fetchNotes();
@@ -34,7 +34,7 @@ export default function NotesPage() {
 
   return (
     <div>
-      <h1 className='text-center text-xl font-semibold mb-4 text-sm md:text-base lg:text-lg'>All Notes</h1>
+      <h1 className='text-center  font-semibold mb-4 text-sm md:text-base lg:text-lg'>All Notes</h1>
       <div className='text-center md:text-right text-sm md:text-base lg:text-lg text-white mb-4'>
         <Link className='bg-green-500 hover:bg-green-600 duration-300 px-2 py-1 rounded-md' href="/notes/new">Create New Note</Link>
       </div>
