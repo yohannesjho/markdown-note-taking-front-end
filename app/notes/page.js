@@ -32,7 +32,9 @@ export default function NotesPage() {
   return (
     <div>
       <h1 className='text-center text-xl font-semibold'>All Notes</h1>
-      <Link className='bg-green-500 hover:bg-green-600 hover:text-white duration-300 px-2 py-1 rounded-md  text-lg' href="/notes/new">Create New Note</Link>
+      <div className='text-right'>
+        <Link className='bg-green-500 hover:bg-green-600 hover:text-white duration-300 px-2 py-1 rounded-md  text-lg' href="/notes/new">Create New Note</Link>
+      </div>
       <ul className=' space-y-4 list-inside list-decimal  flex flex-col items-center justify-center'>
         {notes.map((note) => (
           <li className='' key={note._id}>
